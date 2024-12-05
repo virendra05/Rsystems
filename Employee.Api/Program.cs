@@ -3,8 +3,6 @@ using DataManager.Manager;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-// Add services to the container.
 builder.Services.AddScoped<IEmployeeDataContract, EmployeeDataManager>();
 
 builder.Services.AddControllers();
@@ -13,7 +11,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -24,9 +21,8 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-// Add CORS policy
 app.UseCors(policy =>
-    policy.WithOrigins("http://localhost:4200") // Replace with your frontend domain
+    policy.WithOrigins("http://localhost:4200")
     .AllowAnyMethod()
     .AllowAnyHeader());
 app.MapControllers();
