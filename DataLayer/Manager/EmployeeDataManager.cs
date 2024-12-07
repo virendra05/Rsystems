@@ -6,7 +6,17 @@ namespace DataManager.Manager
 {
     public class EmployeeDataManager : IEmployeeDataContract
     {
-        private readonly string _filePath = "Data/Employees.json";
+        private readonly string _dataDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Data");
+        private readonly string _filePath;
+
+        public EmployeeDataManager()
+        {
+            if (!Directory.Exists(_dataDirectory))
+            {
+                Directory.CreateDirectory(_dataDirectory);
+            }
+            _filePath = Path.Combine(_dataDirectory, "Employees.json");
+        }
 
         #region public methods
         public async Task<bool> CreateAsync(Employee employee)

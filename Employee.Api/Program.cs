@@ -22,6 +22,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Services.AddSingleton<ILoggingService, SerilogLoggingService>();
+builder.Services.AddScoped<IEmployeeBusinessContract, EmployeeBusinessManager>();
 builder.Services.AddScoped<IEmployeeDataContract, EmployeeDataManager>();
 
 builder.Services.AddControllers();

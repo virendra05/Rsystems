@@ -14,11 +14,11 @@ namespace Employee.Api.Controllers
     {
         #region Private Properties
         private IEmployeeBusinessContract employeeBusinessContract;
-        private readonly ILogger<EmployeeController> _logger;
+        private readonly ILoggingService _logger;
         #endregion Private Properties
 
         #region Constructor
-        public EmployeeController(IEmployeeBusinessContract _employeeBusinessContract, ILogger<EmployeeController> logger)
+        public EmployeeController(IEmployeeBusinessContract _employeeBusinessContract, ILoggingService logger)
         {
             employeeBusinessContract = _employeeBusinessContract;
             _logger = logger;
@@ -33,7 +33,7 @@ namespace Employee.Api.Controllers
         /// <returns>Object of GetAllEmployeesResultViewModel</returns>
         [HttpGet]
 
-        public async Task<IActionResult> Get(string? searchText = null, string sortColumn = "Name", int sortOrder = 1, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Get(string? searchText = null, string sortColumn = "Email", int sortOrder = 1, int pageIndex = 1, int pageSize = 10)
         {
             _logger.LogInformation($"Starting Get method with SearchText: {searchText}, SortColumn: {sortColumn}, SortOrder: {sortOrder}, PageIndex: {pageIndex}, PageSize: {pageSize}");
             GetAllEmployeesResultViewModel result = new GetAllEmployeesResultViewModel();
@@ -88,7 +88,7 @@ namespace Employee.Api.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred during the Get operation.");
+                _logger.LogError("An error occurred during the Get operation.", ex);
                 result.Errors.Add(Utility.GetDefaultInternalServerErrorException());
                 statusCode = Utility.GetDefaultInternalServerErrorHttpStatusCode();
             }
@@ -103,6 +103,8 @@ namespace Employee.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> Put(EditEmployeeViewRequestModel model)
         {
+            _logger.LogInformation($"Starting Put method with model ID: {model.Id}");
+
             AddEditDeleteResultViewModel result = new AddEditDeleteResultViewModel();
             HttpStatusCode statusCode;
             try
@@ -116,6 +118,8 @@ namespace Employee.Api.Controllers
                     PhoneNumber = model.PhoneNumber
 
                 });
+                _logger.LogInformation($"Update attempt was successful: {data.IsSuccess}");
+
                 if (data.IsSuccess)
                 {
 
@@ -137,6 +141,7 @@ namespace Employee.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("An error occurred during the Put operation", ex);
                 result.Errors.Add(Utility.GetDefaultInternalServerErrorException());
                 statusCode = Utility.GetDefaultInternalServerErrorHttpStatusCode();
             }
@@ -151,6 +156,8 @@ namespace Employee.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(AddEmployeeViewRequestModel model)
         {
+            _logger.LogInformation($"Starting Post method with model: {model}");
+
             AddEditDeleteResultViewModel result = new AddEditDeleteResultViewModel();
             HttpStatusCode statusCode;
             try
@@ -163,6 +170,7 @@ namespace Employee.Api.Controllers
                     PhoneNumber = model.PhoneNumber
 
                 });
+                _logger.LogInformation($"Creation attempt was successful: {data.IsSuccess}");
                 if (data.IsSuccess)
                 {
 
@@ -184,6 +192,7 @@ namespace Employee.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("An error occurred during the Post operation", ex);
                 result.Errors.Add(Utility.GetDefaultInternalServerErrorException());
                 statusCode = Utility.GetDefaultInternalServerErrorHttpStatusCode();
             }
@@ -198,6 +207,7 @@ namespace Employee.Api.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
+            _logger.LogInformation($"Starting Delete method with Employee ID: {id}");
             AddEditDeleteResultViewModel result = new AddEditDeleteResultViewModel();
             HttpStatusCode statusCode;
             try
@@ -206,6 +216,7 @@ namespace Employee.Api.Controllers
                 {
                     Id = id,
                 });
+                _logger.LogInformation($"Delete attempt was successful: {data.IsSuccess}");
                 if (data.IsSuccess)
                 {
 
@@ -227,6 +238,7 @@ namespace Employee.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError("An error occurred during the Delete operation", ex);
                 result.Errors.Add(Utility.GetDefaultInternalServerErrorException());
                 statusCode = Utility.GetDefaultInternalServerErrorHttpStatusCode();
             }
