@@ -22,7 +22,7 @@ namespace Employee.Api.CommonUtility
                         statusCode = HttpStatusCode.OK;
                         break;
                     case HttpVerbCode.DELETE:
-                        statusCode = HttpStatusCode.OK;
+                        statusCode = HttpStatusCode.NoContent;
                         break;
                     default:
                         statusCode = HttpStatusCode.OK;

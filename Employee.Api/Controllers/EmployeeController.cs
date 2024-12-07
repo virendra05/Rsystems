@@ -101,7 +101,7 @@ namespace Employee.Api.Controllers
         /// </summary>
         /// <returns>Object of AddEditDeleteResultViewModel</returns>
         [HttpPut]
-        public async Task<IActionResult> Put(EditEmployeeViewRequestModel model)
+        public async Task<IActionResult> UpdateAsync(EditEmployeeViewRequestModel model)
         {
             _logger.LogInformation($"Starting Put method with model ID: {model.Id}");
 
@@ -205,7 +205,7 @@ namespace Employee.Api.Controllers
         /// </summary>
         /// <returns>Object of AddEditDeleteResultViewModel</returns>
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             _logger.LogInformation($"Starting Delete method with Employee ID: {id}");
             AddEditDeleteResultViewModel result = new AddEditDeleteResultViewModel();
