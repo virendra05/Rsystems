@@ -125,7 +125,7 @@ namespace Employee.Test.Employee.API.Tests
             var result = await _employeeController.DeleteAsync(1) as ObjectResult;
 
             Assert.NotNull(result);
-            Assert.Equal((int)HttpStatusCode.NoContent, result.StatusCode);
+            Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
             var responseModel = Assert.IsType<AddEditDeleteResultViewModel>(result.Value);
             Assert.True(responseModel.IsSuccess);
         }

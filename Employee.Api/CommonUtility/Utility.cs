@@ -21,9 +21,6 @@ namespace Employee.Api.CommonUtility
                     case HttpVerbCode.PUT:
                         statusCode = HttpStatusCode.OK;
                         break;
-                    case HttpVerbCode.DELETE:
-                        statusCode = HttpStatusCode.NoContent;
-                        break;
                     default:
                         statusCode = HttpStatusCode.OK;
                         break;
