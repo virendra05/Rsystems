@@ -22,10 +22,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Employee.Manager.Tests\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\BusinessManager\BusinessManager.csproj" />
 	  <ProjectReference Include="..\Employee.Api\Employee.Api.csproj" />
 	</ItemGroup>
