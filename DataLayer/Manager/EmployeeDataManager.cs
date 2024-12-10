@@ -46,7 +46,7 @@ namespace DataManager.Manager
                     : query.OrderByDescending(e => e.Email);
             }
 
-            int totalRecords = query.Count(); // Get the total number of records to calculate total pages
+            int totalRecords = query.Count();
             var paginatedList = query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
             var result = new EmployeeResult
@@ -59,7 +59,8 @@ namespace DataManager.Manager
                     Email = e.Email,
                     PhoneNumber = e.PhoneNumber
                 }).ToList(),
-                TotalPages = (int)Math.Ceiling((double)totalRecords / pageSize) // Calculate total pages
+                TotalPages = (int)Math.Ceiling((double)totalRecords / pageSize),
+                TotalRecords = totalRecords
             };
 
             return result;

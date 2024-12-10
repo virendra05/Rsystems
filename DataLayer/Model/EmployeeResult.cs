@@ -10,5 +10,6 @@ namespace DataManager.Model
     {
         public List<Employee> Employees { get; set; }= new List<Employee>();
         public int TotalPages { get; set; }
+        public int TotalRecords { get; set; }
     }
 }

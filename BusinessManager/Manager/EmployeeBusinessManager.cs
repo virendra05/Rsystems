@@ -93,6 +93,7 @@ namespace BusinessManager.Manager
                         _logger.LogInformation("Data retrieved successfully in GetEmployeesAsync.");
                         response.IsSuccess = true;
                         response.TotalPages = data.TotalPages;
+                        response.TotalRecords = data.TotalRecords;
 
                     }
                 }

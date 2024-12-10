@@ -4,5 +4,6 @@
     {
         public List<GetEmployeeResponse> EmployeeList { get; set; }= new List<GetEmployeeResponse>();
         public int TotalPages { get; set; }
+        public int TotalRecords { get; set; }
     }
 }
