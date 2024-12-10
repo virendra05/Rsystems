@@ -27,8 +27,7 @@ namespace DataManager.Manager
             await WriteEmployeesAsync(employees);
             return true;
         }
-
-        public async Task<List<Employee>> GetEmployeesAsync(string searchText, string[] sortColumns, string sortOrder, int pageIndex, int pageSize)
+        public async Task<EmployeeResult> GetEmployeesAsync(string searchText, string[] sortColumns, string sortOrder, int pageIndex, int pageSize)
         {
             var employees = await ReadEmployeesAsync();
             var query = employees.AsQueryable();
@@ -47,16 +46,23 @@ namespace DataManager.Manager
                     : query.OrderByDescending(e => e.Email);
             }
 
+            int totalRecords = query.Count(); // Get the total number of records to calculate total pages
             var paginatedList = query.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
-            return paginatedList.Select(e => new Employee
+            var result = new EmployeeResult
             {
-                Id = e.Id,
-                FirstName = e.FirstName,
-                LastName = e.LastName,
-                Email = e.Email,
-                PhoneNumber = e.PhoneNumber
-            }).ToList();
+                Employees = paginatedList.Select(e => new Employee
+                {
+                    Id = e.Id,
+                    FirstName = e.FirstName,
+                    LastName = e.LastName,
+                    Email = e.Email,
+                    PhoneNumber = e.PhoneNumber
+                }).ToList(),
+                TotalPages = (int)Math.Ceiling((double)totalRecords / pageSize) // Calculate total pages
+            };
+
+            return result;
         }
 
         public async Task<bool> UpdateAsync(Employee employee)

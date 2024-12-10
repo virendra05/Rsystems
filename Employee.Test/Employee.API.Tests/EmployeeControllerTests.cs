@@ -32,7 +32,8 @@ namespace Employee.Test.Employee.API.Tests
                 {
                     new GetEmployeeResponse { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", PhoneNumber = "1234567890" },
                     new GetEmployeeResponse { Id = 2, FirstName = "Jane", LastName = "Doe", Email = "jane.doe@example.com", PhoneNumber = "0987654321" }
-                }
+                },
+                TotalPages = 1,
             };
 
             _employeeBusinessContractMock.Setup(x => x.GetEmployeesAsync(It.IsAny<GetEmployeeListRequest>()))

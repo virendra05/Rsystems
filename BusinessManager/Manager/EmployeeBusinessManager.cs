@@ -76,7 +76,7 @@ namespace BusinessManager.Manager
                 {
                     var data = await employeDataManager.GetEmployeesAsync(request.SearchText, request.SortColumn, request.SortOrder, request.PageIndex, request.PageSize);
 
-                    if (data == null || data.Count == 0)
+                    if (data == null || data.Employees.Count == 0)
                     {
                         _logger.LogInformation("No data found in GetEmployeesAsync.");
                         response.IsSuccess = true;
@@ -85,13 +85,14 @@ namespace BusinessManager.Manager
                     }
                     else
                     {
-                        foreach (var item in data)
+                        foreach (var item in data.Employees)
                         {
                             var addItem = GetEmployeeResponse.ConvertToBusiness(item);
                             response.EmployeeList.Add(addItem);
                         }
                         _logger.LogInformation("Data retrieved successfully in GetEmployeesAsync.");
                         response.IsSuccess = true;
+                        response.TotalPages = data.TotalPages;
 
                     }
                 }

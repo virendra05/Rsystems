@@ -67,7 +67,7 @@ namespace Employee.Api.Controllers
 
                         }
                     }
-
+                    result.TotalPages = data.TotalPages;
                     result.IsSuccess = true;
                 }
                 else
