@@ -1,0 +1,71 @@
+<div class="container">
+
+
+  <div class="form-row filter-items">
+    <mat-form-field appearance="fill">
+      <mat-label>Sort Order</mat-label>
+      <mat-select [(value)]="sortOrder" (selectionChange)="loadEmployees()">
+        <mat-option [value]="1">Ascending</mat-option>
+        <mat-option [value]="2">Descending</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="loadEmployees()" [(ngModel)]="searchText" placeholder="Search">
+    </mat-form-field>
+  </div>
+
+
+  <mat-table [dataSource]="employees">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.firstName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.lastName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.phoneNumber}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        <button class="edit-button" mat-button (click)="editEmployee(employee.id)">Edit</button>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        <button class="delete-button" mat-button (click)="deleteEmployee(employee.id)">Delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="totalRecords"
+               [pageIndex]="pageIndex-1"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[5, 10, 20, 50]"
+               (page)="pageEvent($event)">
+</mat-paginator>
+</div>
