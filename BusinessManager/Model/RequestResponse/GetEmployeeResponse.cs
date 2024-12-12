@@ -8,7 +8,6 @@ namespace BusinessManager.Model.RequestResponse
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string PhoneNumber { get; set; } = string.Empty;
 
         public static GetEmployeeResponse ConvertToBusiness(DM.Employee item)
         {
@@ -16,8 +15,7 @@ namespace BusinessManager.Model.RequestResponse
             Obj.Id = item.Id;
             Obj.FirstName = item.FirstName;
             Obj.LastName = item.LastName;
-            Obj.Email = item.Email;
-            Obj.PhoneNumber = item.PhoneNumber;          
+            Obj.Email = item.Email;      
             return Obj;
 
         }

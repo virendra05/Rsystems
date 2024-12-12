@@ -56,8 +56,7 @@ namespace DataManager.Manager
                     Id = e.Id,
                     FirstName = e.FirstName,
                     LastName = e.LastName,
-                    Email = e.Email,
-                    PhoneNumber = e.PhoneNumber
+                    Email = e.Email
                 }).ToList(),
                 TotalPages = (int)Math.Ceiling((double)totalRecords / pageSize),
                 TotalRecords = totalRecords

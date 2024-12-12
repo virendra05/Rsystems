@@ -9,8 +9,6 @@ namespace BusinessManager.Model.RequestResponse
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string PhoneNumber { get; set; } = string.Empty;
-
         public async override Task<bool> IsValidAsync()
         {
             bool IsValid = false;
@@ -42,9 +40,7 @@ namespace BusinessManager.Model.RequestResponse
             {
                 FirstName = employee.FirstName,
                 LastName = employee.LastName,
-                Email = employee.Email,
-                PhoneNumber = employee.PhoneNumber
-
+                Email = employee.Email
             };
             return EmployeeDM;
         }

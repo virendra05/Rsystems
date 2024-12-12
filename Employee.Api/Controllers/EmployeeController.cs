@@ -62,7 +62,6 @@ namespace Employee.Api.Controllers
                             model.FirstName = item.FirstName;
                             model.LastName = item.LastName;
                             model.Email = item.Email;
-                            model.PhoneNumber = item.PhoneNumber;
                             result.EmployeeList.Add(model);
 
                         }
@@ -115,8 +114,7 @@ namespace Employee.Api.Controllers
                     Id = model.Id,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber
+                    Email = model.Email
 
                 });
                 _logger.LogInformation($"Update attempt was successful: {data.IsSuccess}");
@@ -167,8 +165,7 @@ namespace Employee.Api.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber
+                    Email = model.Email
 
                 });
                 _logger.LogInformation($"Creation attempt was successful: {data.IsSuccess}");

@@ -30,8 +30,8 @@ namespace Employee.Test.Employee.API.Tests
                 IsSuccess = true,
                 EmployeeList = new List<GetEmployeeResponse>
                 {
-                    new GetEmployeeResponse { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", PhoneNumber = "1234567890" },
-                    new GetEmployeeResponse { Id = 2, FirstName = "Jane", LastName = "Doe", Email = "jane.doe@example.com", PhoneNumber = "0987654321" }
+                    new GetEmployeeResponse { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com"},
+                    new GetEmployeeResponse { Id = 2, FirstName = "Jane", LastName = "Doe", Email = "jane.doe@example.com"}
                 },
                 TotalPages = 1,
                 TotalRecords = 2,
@@ -72,8 +72,7 @@ namespace Employee.Test.Employee.API.Tests
             {
                 FirstName = "Virendra",
                 LastName = "Parade",
-                Email = "virendraparade01@gmail.com",
-                PhoneNumber = "9923479002"
+                Email = "virendraparade01@gmail.com"
             };
 
             var mockResponse = new AddEditDeleteEmployeeResponse { IsSuccess = true};
@@ -96,8 +95,7 @@ namespace Employee.Test.Employee.API.Tests
             {
                 FirstName = "Virendra",
                 LastName = "Parade",
-                Email = "virendraparade01@gmail.com",
-                PhoneNumber = "99234790021"
+                Email = "virendraparade01@gmail.com"
             };
 
             var mockResponse = new AddEditDeleteEmployeeResponse
@@ -160,8 +158,7 @@ namespace Employee.Test.Employee.API.Tests
                 Id = 1,
                 FirstName = "Virendra",
                 LastName = "Parade",
-                Email = "virendraparade01@gmail.com",
-                PhoneNumber = "9923479002"
+                Email = "virendraparade01@gmail.com"
             };
 
             var mockResponse = new AddEditDeleteEmployeeResponse { IsSuccess = true };
@@ -185,8 +182,7 @@ namespace Employee.Test.Employee.API.Tests
                 Id = 1,
                 FirstName = "Virendra",
                 LastName = "Parade",
-                Email = "virendraparade01@gmail.com",
-                PhoneNumber = "99234790021"
+                Email = "virendraparade01@gmail.com"
             };
 
             var mockResponse = new AddEditDeleteEmployeeResponse
